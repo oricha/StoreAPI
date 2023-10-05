@@ -5,10 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "CarModel")
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarModel {
 
     @Id
@@ -17,7 +21,6 @@ public class CarModel {
     @NotNull
     private String model;
 
-    @ManyToOne
-    @JoinColumn(name = "car_maker_id")
-    private CarMaker carMaker;
+    private Integer carMaker;
+
 }

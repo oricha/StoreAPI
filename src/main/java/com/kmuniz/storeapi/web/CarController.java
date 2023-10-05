@@ -19,20 +19,20 @@ public class CarController {
     private CarService carService;
 
     // Endpoint to get all car brands
-    @GetMapping("/brands")
+    @GetMapping(value="/brands", produces = "application/json")
     public List<CarMaker> getAllCarBrands() {
         return carService.getAllCarBrands();
     }
     // Endpoint to get all car models
-    @GetMapping("/models")
+    @GetMapping(value="/models", produces = "application/json")
     public List<CarModel> getAllCarModels() {
         return carService.getAllCarModels();
     }
 
 
     // Endpoint to get car models for a specific brand
-    @GetMapping("/models/{brandName}")
-    public List<CarModel> getCarModelsByBrand(@PathVariable String brandName) {
-        return carService.getCarModelsByBrand(brandName);
+    @GetMapping(value="/models/{brandName}", produces = "application/json")
+    public List<CarModel> getCarModelsByBrand(@PathVariable String carMakerId) {
+        return carService.getCarModelsByBrand(Integer.valueOf(carMakerId));
     }
 }

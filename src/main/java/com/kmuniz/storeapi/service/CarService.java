@@ -23,8 +23,8 @@ public class CarService {
         return carMakerRepository.findAll();
     }
 
-    public List<CarModel> getCarModelsByBrand(String brandName) {
-        return (List<CarModel>) carModelRepository.findByBrandName(brandName);
+    public List<CarModel> getCarModelsByBrand(Integer carMakerId) {
+        return (List<CarModel>) carModelRepository.findAll();
     }
 
     public List<CarModel> getAllCarModels() {

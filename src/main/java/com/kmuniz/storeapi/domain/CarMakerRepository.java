@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarMakerRepository extends JpaRepository<CarMaker, Integer> {
 
-    ThreadLocal<Object> findByName(String brandName);
+    ThreadLocal<Object> findByName(String name);
 }

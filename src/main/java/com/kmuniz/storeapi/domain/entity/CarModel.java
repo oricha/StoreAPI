@@ -20,7 +20,12 @@ public class CarModel {
     private Integer id;
     @NotNull
     private String model;
+    @ManyToOne
+    @JoinColumn(name = "car_maker_id")
+    private CarMaker carMaker;
 
-    private Integer carMaker;
-
+    public CarModel(String model, CarMaker carMaker) {
+        this.model = model;
+        this.carMaker = carMaker;
+    }
 }

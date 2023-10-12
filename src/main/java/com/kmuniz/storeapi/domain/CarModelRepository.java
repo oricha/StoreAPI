@@ -5,4 +5,8 @@ import com.kmuniz.storeapi.domain.entity.CarModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarModelRepository extends JpaRepository<CarModel, Integer> {
+
+    ThreadLocal<Object> findByModel(String model);
+
+    ThreadLocal<Object> findByCarMaker(CarMaker carMaker);
 }

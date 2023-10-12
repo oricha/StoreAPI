@@ -20,5 +20,6 @@ public class CarMaker {
     private String name;
 
     public CarMaker(String name) {
+        this.name = name;
     }
 }

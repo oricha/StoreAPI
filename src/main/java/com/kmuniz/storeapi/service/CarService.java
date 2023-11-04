@@ -4,6 +4,7 @@ import com.kmuniz.storeapi.domain.entity.CarMaker;
 import com.kmuniz.storeapi.domain.CarMakerRepository;
 import com.kmuniz.storeapi.domain.entity.CarModel;
 import com.kmuniz.storeapi.domain.CarModelRepository;
+import com.kmuniz.storeapi.domain.entity.CarVersion;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,9 @@ public class CarService {
         return carMakerRepository.findAll();
     }
 
-    public List<CarModel> getCarModelsByBrand(Integer carMakerId) {
-        return (List<CarModel>) carModelRepository.findAll();
+    public List<CarModel> getCarModelsByBrand(String carName) {
+        CarMaker carMaker = carMakerRepository.findByName(carName);
+        return (List<CarModel>) carModelRepository.findByCarMaker(carMaker);
     }
 
     public List<CarModel> getAllCarModels() {
@@ -37,5 +39,9 @@ public class CarService {
 
     public CarMaker saveCarMaker(CarMaker carMaker) {
         return carMakerRepository.save(carMaker);
+    }
+
+    public List<CarVersion> getCarVersionByModel(String model) {
+        return null;
     }
 }

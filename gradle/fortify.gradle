@@ -1,0 +1,11 @@
+apply plugin: 'fortify'
+fortify {
+    pluginConfig {
+        sourcePath = projectDir
+        jdk = '1.8'
+        scanFile = "$projectDir/build/reports/fortify/" + rootProject.name + ".fpr"
+        reportFile = "$projectDir/build/reports/fortify/" + rootProject.name + ".pdf"
+        reportXmlFile = "$projectDir/build/reports/fortify/" + rootProject.name + ".xml"
+        exclude = "**/test/**/*.*"
+    }
+}

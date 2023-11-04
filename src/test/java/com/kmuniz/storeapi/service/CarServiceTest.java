@@ -50,22 +50,22 @@ public class CarServiceTest {
         assertEquals(carMakers, result);
     }
 
-//    @Test
-//    public void testGetCarModelsByBrand() {
-//
-//        // Create a list of car models for testing
-//        List<CarModel> carModels = new ArrayList<>();
-//        carModels.add(new CarModel(carMakerIdToyota, "Camry"));
-//        carModels.add(new CarModel(carMakerIdHonda, "Toyota"));
-//
-//        // Mock the behavior of carModelRepository.findByBrandName()
-//        Mockito.when(carModelRepository.findByCarMaker(carMakerIdToyota)).thenReturn(carModels);
-//
-//        List<CarModel> result = carService.getCarModelsByBrand(carMakerIdToyota);
-//
-//        // Verify that the result matches the mocked data
-//        assertEquals(carModels, result);
-//    }
+    @Test
+    public void testGetCarModelsByBrand() {
+
+        // Create a list of car models for testing
+        List<CarModel> carModels = new ArrayList<>();
+        carModels.add(new CarModel("Camry", new CarMaker("Toyota")));
+        carModels.add(new CarModel("Prius", new CarMaker("Toyota")));
+
+        // Mock the behavior of carModelRepository.findByBrandName()
+        Mockito.when(carModelRepository.findByCarMaker(new CarMaker("Toyota"))).thenReturn(carModels);
+
+        List<CarModel> result = carService.getCarModelsByBrand("Toyota");;
+
+        // Verify that the result matches the mocked data
+        assertEquals(carModels, result);
+    }
 
 //    @Test
 //    public void testGetAllCarModels() {

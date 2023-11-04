@@ -1,10 +1,10 @@
 package com.kmuniz.storeapi.service;
 
-import com.kmuniz.storeapi.domain.entity.CarMaker;
+import com.kmuniz.storeapi.domain.entity.CarMakerEntity;
 import com.kmuniz.storeapi.domain.CarMakerRepository;
-import com.kmuniz.storeapi.domain.entity.CarModel;
+import com.kmuniz.storeapi.domain.entity.CarModelEntity;
 import com.kmuniz.storeapi.domain.CarModelRepository;
-import com.kmuniz.storeapi.domain.entity.CarVersion;
+import com.kmuniz.storeapi.domain.entity.CarVersionEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,28 +20,28 @@ public class CarService {
         this.carModelRepository = carModelRepository;
     }
 
-    public List<CarMaker> getAllCarBrands() {
+    public List<CarMakerEntity> getAllCarBrands() {
         return carMakerRepository.findAll();
     }
 
-    public List<CarModel> getCarModelsByBrand(String carName) {
-        CarMaker carMaker = carMakerRepository.findByName(carName);
-        return (List<CarModel>) carModelRepository.findByCarMaker(carMaker);
+    public List<CarModelEntity> getCarModelsByBrand(String carName) {
+        CarMakerEntity carMakerEntity = carMakerRepository.findByName(carName);
+        return (List<CarModelEntity>) carModelRepository.findByCarMaker(carMakerEntity);
     }
 
-    public List<CarModel> getAllCarModels() {
+    public List<CarModelEntity> getAllCarModels() {
         return carModelRepository.findAll();
     }
 
-    public CarModel saveCarModel(CarModel carModel) {
-        return carModelRepository.save(carModel);
+    public CarModelEntity saveCarModel(CarModelEntity carModelEntity) {
+        return carModelRepository.save(carModelEntity);
     }
 
-    public CarMaker saveCarMaker(CarMaker carMaker) {
-        return carMakerRepository.save(carMaker);
+    public CarMakerEntity saveCarMaker(CarMakerEntity carMakerEntity) {
+        return carMakerRepository.save(carMakerEntity);
     }
 
-    public List<CarVersion> getCarVersionByModel(String model) {
+    public List<CarVersionEntity> getCarVersionByModel(String model) {
         return null;
     }
 }

@@ -1,9 +1,9 @@
 package com.kmuniz.storeapi.domain;
 
-import com.kmuniz.storeapi.domain.entity.CarMaker;
+import com.kmuniz.storeapi.domain.entity.CarMakerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CarMakerRepository extends JpaRepository<CarMaker, Integer> {
+public interface CarMakerRepository extends JpaRepository<CarMakerEntity, Integer> {
 
-    CarMaker findByName(String name);
+    CarMakerEntity findByName(String name);
 }

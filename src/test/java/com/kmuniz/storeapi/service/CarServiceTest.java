@@ -2,8 +2,8 @@ package com.kmuniz.storeapi.service;
 
 import com.kmuniz.storeapi.domain.CarMakerRepository;
 import com.kmuniz.storeapi.domain.CarModelRepository;
-import com.kmuniz.storeapi.domain.entity.CarMaker;
-import com.kmuniz.storeapi.domain.entity.CarModel;
+import com.kmuniz.storeapi.domain.entity.CarMakerEntity;
+import com.kmuniz.storeapi.domain.entity.CarModelEntity;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,34 +37,34 @@ public class CarServiceTest {
     @Test
     public void testGetAllCarBrands() {
         // Create a list of car makers for testing
-        List<CarMaker> carMakers = new ArrayList<>();
-        carMakers.add(new CarMaker("Toyota"));
-        carMakers.add(new CarMaker("Honda"));
+        List<CarMakerEntity> carMakerEntities = new ArrayList<>();
+        carMakerEntities.add(new CarMakerEntity("Toyota"));
+        carMakerEntities.add(new CarMakerEntity("Honda"));
 
         // Mock the behavior of carMakerRepository.findAll()
-        Mockito.when(carMakerRepository.findAll()).thenReturn(carMakers);
+        Mockito.when(carMakerRepository.findAll()).thenReturn(carMakerEntities);
 
-        List<CarMaker> result = carService.getAllCarBrands();
+        List<CarMakerEntity> result = carService.getAllCarBrands();
 
         // Verify that the result matches the mocked data
-        assertEquals(carMakers, result);
+        assertEquals(carMakerEntities, result);
     }
 
     @Test
     public void testGetCarModelsByBrand() {
 
         // Create a list of car models for testing
-        List<CarModel> carModels = new ArrayList<>();
-        carModels.add(new CarModel("Camry", new CarMaker("Toyota")));
-        carModels.add(new CarModel("Prius", new CarMaker("Toyota")));
+        List<CarModelEntity> carModelEntities = new ArrayList<>();
+        carModelEntities.add(new CarModelEntity("Camry", new CarMakerEntity("Toyota")));
+        carModelEntities.add(new CarModelEntity("Prius", new CarMakerEntity("Toyota")));
 
         // Mock the behavior of carModelRepository.findByBrandName()
-        Mockito.when(carModelRepository.findByCarMaker(new CarMaker("Toyota"))).thenReturn(carModels);
+        Mockito.when(carModelRepository.findByCarMaker(new CarMakerEntity("Toyota"))).thenReturn(carModelEntities);
 
-        List<CarModel> result = carService.getCarModelsByBrand("Toyota");;
+        List<CarModelEntity> result = carService.getCarModelsByBrand("Toyota");;
 
         // Verify that the result matches the mocked data
-        assertEquals(carModels, result);
+        assertEquals(carModelEntities, result);
     }
 
 //    @Test
@@ -100,14 +100,14 @@ public class CarServiceTest {
     @Test
     public void testSaveCarMaker() {
         // Create a car maker for testing
-        CarMaker carMaker = new CarMaker("Toyota");
+        CarMakerEntity carMakerEntity = new CarMakerEntity("Toyota");
 
         // Mock the behavior of carMakerRepository.save()
-        Mockito.when(carMakerRepository.save(carMaker)).thenReturn(carMaker);
+        Mockito.when(carMakerRepository.save(carMakerEntity)).thenReturn(carMakerEntity);
 
-        CarMaker result = carService.saveCarMaker(carMaker);
+        CarMakerEntity result = carService.saveCarMaker(carMakerEntity);
 
         // Verify that the result matches the input car maker
-        assertEquals(carMaker, result);
+        assertEquals(carMakerEntity, result);
     }
 }

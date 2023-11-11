@@ -61,7 +61,7 @@ public class CarServiceTest {
         // Mock the behavior of carModelRepository.findByBrandName()
         Mockito.when(carModelRepository.findByCarMaker(new CarMakerEntity("Toyota"))).thenReturn(carModelEntities);
 
-        List<CarModelEntity> result = carService.getCarModelsByBrand("Toyota");;
+        List<CarModelEntity> result = carService.getCarModelsByBrand("Toyota");
 
         // Verify that the result matches the mocked data
         assertEquals(carModelEntities, result);

@@ -5,15 +5,16 @@ import com.kmuniz.storeapi.domain.entity.CarMakerEntity;
 import com.kmuniz.storeapi.domain.entity.CarModelEntity;
 import com.kmuniz.storeapi.domain.entity.CarVersionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.kmuniz.storeapi.service.CarService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/car")
 public class CarController {
     @Autowired
@@ -40,5 +41,11 @@ public class CarController {
     public List<CarVersionEntity> getCarVersionByModel(@PathVariable String model){
 
         return  carService.getCarVersionByModel(model);
+    }
+
+    @GetMapping(value = "/home")
+    public String getHome(Model model){
+        model.addAttribute("something", "This come form the controller");
+        return "home";
     }
 }

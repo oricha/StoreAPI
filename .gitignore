@@ -25,6 +25,7 @@ replay_pid*
 
 build/*
 !build/build.xml
+node_modules/
 
 .idea
 .gradle

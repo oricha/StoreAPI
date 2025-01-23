@@ -9,10 +9,10 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "CarModel")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarVersionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

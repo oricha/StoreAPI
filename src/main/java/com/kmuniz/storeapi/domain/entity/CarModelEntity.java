@@ -12,10 +12,10 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "CarModel")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarModelEntity {
 
     @Id
@@ -27,8 +27,8 @@ public class CarModelEntity {
     @JoinColumn(name = "car_maker_id")
     private CarMakerEntity carMaker;
 
-    public CarModelEntity(String model, CarMakerEntity carMaker) {
+    public CarModelEntity(CarMakerEntity carMakerEntity, String model) {
+        this.carMaker = carMakerEntity;
         this.model = model;
-        this.carMaker = carMaker;
     }
 }

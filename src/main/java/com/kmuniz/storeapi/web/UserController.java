@@ -2,7 +2,6 @@ package com.kmuniz.storeapi.web;
 
 
 import com.kmuniz.storeapi.domain.User;
-import com.kmuniz.storeapi.domain.entity.UserEntity;
 import com.kmuniz.storeapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

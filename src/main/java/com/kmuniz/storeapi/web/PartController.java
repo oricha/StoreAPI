@@ -2,12 +2,14 @@ package com.kmuniz.storeapi.web;
 import com.kmuniz.storeapi.domain.entity.Part;
 import com.kmuniz.storeapi.service.PartService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class PartController {
     private final PartService partService;
 

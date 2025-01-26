@@ -21,3 +21,23 @@ VALUES (1, 'Brake Pads', 'High-performance brake pads for Corolla LE.', 49.99, '
         'https://example.com/alloy-wheels.jpg'),
        (5, 'Air Filter', 'Replacement air filter for Corolla SE.', 24.99, 'Filters', 'Toyota', 'Corolla',
         'https://example.com/air-filter.jpg');
+INSERT INTO category (name, icon, part_count)
+VALUES ('Air conditioning-heating system/radiators', 'icon-air-conditioning', 797),
+       ('Body/body parts/hook', 'icon-body-parts', 245),
+       ('Brake system', 'icon-brake-system', 230),
+       ('Cabin/interior', 'icon-cabin', 1040),
+       ('Devices/switches/electronic system', 'icon-devices', 1217),
+       ('Door', 'icon-door', 456),
+       ('Engine', 'icon-engine', 70),
+       ('Exterior front body parts', 'icon-exterior-front', 476),
+       ('Exterior rear body parts', 'icon-exterior-rear', 305),
+       ('Front axle', 'icon-front-axle', 232),
+       ('Fuel mixture system', 'icon-fuel', 37),
+       ('Gas exhaust system', 'icon-exhaust', 0),
+       ('Gearbox/clutch/transmission', 'icon-gearbox', 32),
+       ('Glass', 'icon-glass', 27),
+       ('Headlight/headlamp washing/cleaning system', 'icon-headlight', 88),
+       ('Lighting system', 'icon-lighting', 267),
+       ('Other parts', 'icon-other', 117),
+       ('Rear axle', 'icon-rear-axle', 291),
+       ('Wheels/tires/caps', 'icon-wheels', 72);

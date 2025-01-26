@@ -58,6 +58,13 @@ CREATE TABLE users
     user_type    VARCHAR(50),
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE category
+(
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    name        VARCHAR(255) NOT NULL,
+    icon        VARCHAR(255),
+    part_count  INT
+);
 
 CREATE INDEX idx_car_model_car_maker_id ON car_model (car_maker_id);
 CREATE INDEX idx_car_version_car_model_id ON car_version (car_model_id);

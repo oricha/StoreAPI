@@ -43,4 +43,9 @@ public class PartController {
     public List<Part> searchParts(@RequestParam String query) {
         return partService.searchParts(query);
     }
+
+    @GetMapping("/search-by-name")
+    public List<Part> searchPartsByName(@RequestParam String name) {
+        return partService.searchPartsByName(name);
+    }
 }

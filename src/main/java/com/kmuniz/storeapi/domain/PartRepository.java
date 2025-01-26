@@ -10,4 +10,6 @@ import java.util.List;
 public interface PartRepository extends JpaRepository<Part, Long> {
     List<Part> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String name, String description);
 
+    List<Part> findByNameContainingIgnoreCase(String name);
+
 }

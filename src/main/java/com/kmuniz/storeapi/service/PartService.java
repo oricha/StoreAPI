@@ -23,4 +23,7 @@ public class PartService {
         return partRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query);
     }
 
+    public List<Part> searchPartsByName(String name) {
+        return partRepository.findByNameContainingIgnoreCase(name);
+    }
 }

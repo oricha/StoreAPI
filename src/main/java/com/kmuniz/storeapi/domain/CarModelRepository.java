@@ -11,4 +11,5 @@ public interface CarModelRepository extends JpaRepository<CarModelEntity, Intege
     List<CarModelEntity> findByModel(String model);
 
     List<CarModelEntity> findByCarMaker(CarMakerEntity carMaker);
+
 }

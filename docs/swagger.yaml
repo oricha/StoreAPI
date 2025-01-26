@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  title: Car Parts E-Commerce API
+  version: 1.0.0
+  description: API for managing car parts e-commerce, including searching, listing parts, brands, and models.
+paths:
+  /parts:
+    get:
+      summary: List all parts
+      description: Retrieve a list of all available car parts.
+      parameters:
+        - name: category
+          in: query
+          description: Filter parts by category
+          required: false
+          schema:
+            type: string
+        - name: brand
+          in: query
+          description: Filter parts by car brand
+          required: false
+          schema:
+            type: string
+        - name: model
+          in: query
+          description: Filter parts by car model
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of car parts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Part'
+  /parts/search:
+    get:
+      summary: Search parts
+      description: Search for car parts by name or keywords.
+      parameters:
+        - name: query
+          in: query
+          description: Search query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Part'
+  /brands:
+    get:
+      summary: List all car brands
+      description: Retrieve a list of all available car brands.
+      responses:
+        '200':
+          description: A list of car brands.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brand'
+  /brands/{brand}/models:
+    get:
+      summary: List car models by brand
+      description: Retrieve a list of car models for a specific brand.
+      parameters:
+        - name: brand
+          in: path
+          description: The brand to retrieve models for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of car models.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Model'
+  /parts/search-by-name:
+    get:
+      summary: Search parts by name
+      description: Search for car parts by exact name.
+      parameters:
+        - name: name
+          in: query
+          description: The name of the part to search for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Part'
+components:
+  schemas:
+    Part:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '12345'
+        name:
+          type: string
+          example: Brake Pad
+        description:
+          type: string
+          example: High-quality brake pad for Hyundai Ioniq.
+        price:
+          type: number
+          example: 49.99
+        category:
+          type: string
+          example: Brakes
+        brand:
+          type: string
+          example: Hyundai
+        model:
+          type: string
+          example: Ioniq
+        imageUrl:
+          type: string
+          example: https://example.com/images/brake-pad.jpg
+    Brand:
+      type: object
+      properties:
+        id:
+          type: string
+          example: hyundai
+        name:
+          type: string
+          example: Hyundai
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ioniq
+        name:
+          type: string
+          example: Ioniq

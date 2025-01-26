@@ -1,26 +1,28 @@
 package com.kmuniz.storeapi.domain.entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "CarModel")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class CarMakerEntity {
-
+@Table(name = "parts")
+public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @NotNull
-    private String name;
+    private Long id;
 
-    public CarMakerEntity(String name) {
-        this.name = name;
-    }
+    private String name;
+    private String description;
+    private Double price;
+    private String category;
+    private String brand;
+    private String model;
+    private String imageUrl;
+
 }

@@ -8,23 +8,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "CarModel")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "car_version")
 public class CarVersionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
+    @NotNull
+    private String name; // New name field added
+
     @NotNull
     private String version;
 
     @ManyToOne
-    @JoinColumn(name = "car_maker_id")
+    @JoinColumn(name = "car_maker_id", nullable = false)
     private CarMakerEntity carMakerEntity;
 
     @ManyToOne
-    @JoinColumn(name = "car_model_id")
+    @JoinColumn(name = "car_model_id", nullable = false)
     private CarModelEntity carModelEntity;
 }

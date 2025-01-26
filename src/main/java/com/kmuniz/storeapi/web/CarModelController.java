@@ -14,38 +14,42 @@ import com.kmuniz.storeapi.service.CarService;
 
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/api/car")
-public class CarController {
+public class CarModelController {
+
     @Autowired
     private CarService carService;
 
     // Endpoint to get all car brands
-    @GetMapping(value="/brands", produces = "application/json")
+    @GetMapping(value = "/brands", produces = "application/json")
     public List<CarMakerEntity> getAllCarBrands() {
         return carService.getAllCarBrands();
     }
+
     // Endpoint to get all car models
-    @GetMapping(value="/models", produces = "application/json")
+    @GetMapping(value = "/models", produces = "application/json")
     public List<CarModelEntity> getAllCarModels() {
         return carService.getAllCarModels();
     }
 
-
     // Endpoint to get car models for a specific brand
-    @GetMapping(value="/models/{brandName}", produces = "application/json")
+    @GetMapping(value = "/brands/{brandName}/models", produces = "application/json")
     public List<CarModelEntity> getCarModelsByBrand(@PathVariable String brandName) {
         return carService.getCarModelsByBrand(brandName);
     }
-    @GetMapping(value = "/models/{model}", produces = "application/json")
-    public List<CarVersionEntity> getCarVersionByModel(@PathVariable String model){
 
-        return  carService.getCarVersionByModel(model);
+    // Endpoint to get car versions for a specific model
+    @GetMapping(value = "/models/{modelName}/versions", produces = "application/json")
+    public List<CarVersionEntity> getCarVersionsByModel(@PathVariable String modelName) {
+        return carService.getCarVersionByModel(modelName);
     }
 
+    // Example endpoint to return data to a view (e.g., HTML page)
     @GetMapping(value = "/home")
-    public String getHome(Model model){
-        model.addAttribute("something", "This come form the controller");
+    public String getHome(Model model) {
+        model.addAttribute("something", "This comes from the controller");
         return "home";
     }
 }

@@ -1,22 +1,23 @@
 package com.kmuniz.storeapi.service;
 
-
 import com.kmuniz.storeapi.domain.CarMakerRepository;
 import com.kmuniz.storeapi.domain.CarModelRepository;
 import com.kmuniz.storeapi.domain.entity.CarMakerEntity;
 import com.kmuniz.storeapi.domain.entity.CarModelEntity;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class CarServiceTest {
 
     @InjectMocks
@@ -28,88 +29,91 @@ public class CarServiceTest {
     @Mock
     private CarModelRepository carModelRepository;
 
-    private final Integer carMakerIdToyota = 144;
-    private final Integer carMakerIdHonda = 58;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
     public void testGetAllCarBrands() {
-        // Create a list of car makers for testing
+        // Mock data
         List<CarMakerEntity> carMakerEntities = new ArrayList<>();
         carMakerEntities.add(new CarMakerEntity("Toyota"));
         carMakerEntities.add(new CarMakerEntity("Honda"));
-        // Mock the behavior of carMakerRepository.findAll()
-        Mockito.when(carMakerRepository.findAll()).thenReturn(carMakerEntities);
 
+        // Mock repository behavior
+        when(carMakerRepository.findAll()).thenReturn(carMakerEntities);
+
+        // Call service method
         List<CarMakerEntity> result = carService.getAllCarBrands();
 
-        // Verify that the result matches the mocked data
+        // Verify results
         assertEquals(carMakerEntities, result);
+        verify(carMakerRepository, times(1)).findAll();
     }
-
 
     @Test
     public void testGetCarModelsByBrand() {
-
-        // Create a list of car models for testing
+        // Mock data
+        CarMakerEntity carMaker = new CarMakerEntity("Toyota");
         List<CarModelEntity> carModelEntities = new ArrayList<>();
-        carModelEntities.add(new CarModelEntity(new CarMakerEntity("Toyota"), "Camry"));
-        carModelEntities.add(new CarModelEntity(new CarMakerEntity("Toyota"), "Corolla"));
+        carModelEntities.add(new CarModelEntity(carMaker, "Camry"));
+        carModelEntities.add(new CarModelEntity(carMaker, "Corolla"));
 
-        // Mock the behavior of carModelRepository.findByBrandName()
-        Mockito.when(carModelRepository.findByCarMaker(new CarMakerEntity("Toyota"))).thenReturn(carModelEntities);
+        // Mock repository behavior
+        when(carMakerRepository.findByName("Toyota")).thenReturn(Optional.ofNullable(carMaker));
+        when(carModelRepository.findByCarMaker(carMaker)).thenReturn(carModelEntities);
 
+        // Call service method
         List<CarModelEntity> result = carService.getCarModelsByBrand("Toyota");
 
-        // Verify that the result matches the mocked data
+        // Verify results
         assertEquals(carModelEntities, result);
+        verify(carModelRepository, times(1)).findByCarMaker(carMaker);
     }
 
     @Test
     public void testGetAllCarModels() {
-        // Create a list of car models for testing
+        // Mock data
         List<CarModelEntity> carModels = new ArrayList<>();
         carModels.add(new CarModelEntity(new CarMakerEntity("Toyota"), "Camry"));
         carModels.add(new CarModelEntity(new CarMakerEntity("Honda"), "Civic"));
 
-        // Mock the behavior of carModelRepository.findAll()
-        Mockito.when(carModelRepository.findAll()).thenReturn(carModels);
+        // Mock repository behavior
+        when(carModelRepository.findAll()).thenReturn(carModels);
 
+        // Call service method
         List<CarModelEntity> result = carService.getAllCarModels();
 
-        // Verify that the result matches the mocked data
+        // Verify results
         assertEquals(carModels, result);
+        verify(carModelRepository, times(1)).findAll();
     }
 
     @Test
     public void testSaveCarModel() {
-        // Create a car model for testing
+        // Mock data
         CarModelEntity carModel = new CarModelEntity(new CarMakerEntity("Toyota"), "Camry");
 
-        // Mock the behavior of carModelRepository.save()
-        Mockito.when(carModelRepository.save(carModel)).thenReturn(carModel);
+        // Mock repository behavior
+        when(carModelRepository.save(carModel)).thenReturn(carModel);
 
+        // Call service method
         CarModelEntity result = carService.saveCarModel(carModel);
 
-        // Verify that the result matches the input car model
+        // Verify results
         assertEquals(carModel, result);
+        verify(carModelRepository, times(1)).save(carModel);
     }
 
     @Test
     public void testSaveCarMaker() {
-        // Create a car maker for testing
+        // Mock data
         CarMakerEntity carMakerEntity = new CarMakerEntity("Toyota");
 
-        // Mock the behavior of carMakerRepository.save()
-        Mockito.when(carMakerRepository.save(carMakerEntity)).thenReturn(carMakerEntity);
+        // Mock repository behavior
+        when(carMakerRepository.save(carMakerEntity)).thenReturn(carMakerEntity);
 
+        // Call service method
         CarMakerEntity result = carService.saveCarMaker(carMakerEntity);
 
-        // Verify that the result matches the input car maker
+        // Verify results
         assertEquals(carMakerEntity, result);
+        verify(carMakerRepository, times(1)).save(carMakerEntity);
     }
 }

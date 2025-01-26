@@ -24,9 +24,10 @@ public class CarService {
         return carMakerRepository.findAll();
     }
 
-    public List<CarModelEntity> getCarModelsByBrand(String carName) {
-        CarMakerEntity carMakerEntity = carMakerRepository.findByName(carName);
-        return (List<CarModelEntity>) carModelRepository.findByCarMaker(carMakerEntity);
+    public List<CarModelEntity> getCarModelsByBrand(String brandName) {
+        CarMakerEntity carMaker = carMakerRepository.findByNameIgnoreCase(brandName)
+                .orElseThrow(() -> new IllegalArgumentException("Brand not found: " + brandName));
+        return carModelRepository.findByCarMaker(carMaker);
     }
 
     public List<CarModelEntity> getAllCarModels() {

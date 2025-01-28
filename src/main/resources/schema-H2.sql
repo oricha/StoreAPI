@@ -9,7 +9,7 @@ CREATE TABLE brand
 CREATE TABLE car_maker
 (
     id   BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NUL
+    name VARCHAR(255) NOT NULL
 );
 
 -- Table: CarModel

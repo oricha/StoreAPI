@@ -19,9 +19,11 @@ public class CarModelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "car_maker_id", nullable = false)
     private CarMakerEntity carMaker;
 
     public CarModelEntity(CarMakerEntity carMaker, String name) {

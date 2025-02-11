@@ -31,3 +31,9 @@ node_modules/
 .gradle
 
 bin/*
+
+# Ignore Gradle build cache and project-specific Gradle files
+.gradle/
+
+# Ignore VS Code workspace settings and metadata
+.vscode/

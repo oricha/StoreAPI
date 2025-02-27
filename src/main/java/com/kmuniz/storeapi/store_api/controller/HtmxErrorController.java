@@ -1,4 +1,4 @@
-package com.kmuniz.storeapi.store_api;
+package com.kmuniz.storeapi.store_api.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -3,11 +3,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WarningsToErrorsPlugin = require('warnings-to-errors-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 
 module.exports = (env, argv) => ({
-  entry: 'ts/app.ts',
+  entry: './src/main/resources/js/app.js',
   output: {
     path: path.resolve(__dirname, './build/resources/main/static'),
     filename: 'js/bundle.js'
@@ -22,15 +21,21 @@ module.exports = (env, argv) => ({
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "css/bundle.css"
+      filename: 'css/bundle.css'
     }),
     new WarningsToErrorsPlugin()
   ],
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: ['ts-loader']
+        test: /\.js$'/,
+        include: path.resolve(__dirname, './src/main/resources/js'),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -58,14 +63,19 @@ module.exports = (env, argv) => ({
     ]
   },
   resolve: {
-    plugins: [new TsconfigPathsPlugin({})],
+    modules: [
+      path.resolve(__dirname, './src/main/resources'),
+      'node_modules'
+    ]
   },
   devServer: {
     port: 8081,
     compress: true,
+    hot: true,
+    static: false,
     watchFiles: [
       'src/main/resources/templates/**/*.html',
-      'src/main/resources/ts/**/*.ts',
+      'src/main/resources/js/**/*.js',
       'src/main/resources/css/**/*.css'
     ],
     proxy: [

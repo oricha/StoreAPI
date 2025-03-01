@@ -12,4 +12,18 @@ public class HomeController {
         return "home/index";
     }
 
+    @GetMapping("/index-1")
+    public String index1() {
+        return "home/index-1";
+    }
+
+    @GetMapping("/index-2")
+    public String index2() {
+        return "home/index-2";
+    }
+
+    @GetMapping("/index-3")
+    public String index3() {
+        return "home/index-3";
+    }
 }

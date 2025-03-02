@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 
 @Controller
 @RequestMapping("/carVersions")
@@ -93,6 +95,13 @@ public class CarVersionController {
         carVersionService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("carVersion.delete.success"));
         return "redirect:/carVersions";
+    }
+
+    @GetMapping("/search")
+    public String searchByCarModel(@RequestParam("carModelId") Long carModelId, Model model) {
+        List<CarVersionDTO> carVersions = carVersionService.findByCarModelId(carModelId);
+        model.addAttribute("carVersions", carVersions);
+        return "carVersion/list"; // Adjust the view name as needed
     }
 
 }

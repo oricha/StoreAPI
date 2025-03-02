@@ -79,4 +79,10 @@ public class CarVersionService {
         return carVersion;
     }
 
+    public List<CarVersionDTO> findByCarModelId(Long carModelId) {
+        List<CarVersion> carVersions = carVersionRepository.findByCarModelId(carModelId);
+        return carVersions.stream()
+                .map(carVersion -> mapToDTO(carVersion, new CarVersionDTO()))
+                .toList();
+    }
 }

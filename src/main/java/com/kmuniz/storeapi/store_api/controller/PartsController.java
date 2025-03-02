@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 
 @Controller
 @RequestMapping("/partss")
@@ -71,6 +73,19 @@ public class PartsController {
         partsService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("parts.delete.success"));
         return "redirect:/partss";
+    }
+
+    @GetMapping
+    public String searchParts(
+            @RequestParam("brandId") Long brandId,
+            @RequestParam("modelId") Long modelId,
+            @RequestParam("engineId") Long engineId,
+            @RequestParam("partName") String partName,
+            Model model) {
+        
+        List<PartsDTO> parts = partsService.searchParts(brandId, modelId, engineId, partName);
+        model.addAttribute("parts", parts);
+        return "parts/list"; // Adjust the view name as needed
     }
 
 }

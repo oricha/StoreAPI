@@ -30,7 +30,7 @@ public class CarMakerService {
     }
 
     public List<CarMakerDTO> findAll() {
-        final List<CarMaker> carMakers = carMakerRepository.findAll(Sort.by("id"));
+        final List<CarMaker> carMakers = carMakerRepository.findAll(Sort.by("name"));
         return carMakers.stream()
                 .map(carMaker -> mapToDTO(carMaker, new CarMakerDTO()))
                 .toList();

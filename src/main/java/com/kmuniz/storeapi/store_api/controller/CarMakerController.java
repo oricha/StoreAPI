@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/carMakers")
@@ -78,6 +80,11 @@ public class CarMakerController {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("carMaker.delete.success"));
         }
         return "redirect:/carMakers";
+    }
+
+    @GetMapping("/search")
+    public List<CarMakerDTO> searchCarMakers() {
+        return carMakerService.findAll();
     }
 
 }

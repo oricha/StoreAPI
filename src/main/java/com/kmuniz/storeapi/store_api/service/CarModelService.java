@@ -87,4 +87,7 @@ public class CarModelService {
         return null;
     }
 
+    public List<CarModelDTO> findByCarMakerId(Long carMakerId) {
+        return null;
+    }
 }

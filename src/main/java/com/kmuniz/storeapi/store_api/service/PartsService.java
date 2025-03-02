@@ -48,6 +48,14 @@ public class PartsService {
         partsRepository.deleteById(id);
     }
 
+    public List<PartsDTO> searchParts(Long brandId, Long modelId, Long engineId, String partName) {
+        return partsRepository.findByCriteria(brandId, modelId, engineId, partName)
+                .stream()
+                .map(part -> mapToDTO(part, new PartsDTO()))
+                .toList();
+    }
+
+
     private PartsDTO mapToDTO(final Parts parts, final PartsDTO partsDTO) {
         partsDTO.setId(parts.getId());
         partsDTO.setName(parts.getName());

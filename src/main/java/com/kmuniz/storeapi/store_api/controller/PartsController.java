@@ -75,7 +75,7 @@ public class PartsController {
         return "redirect:/partss";
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public String searchParts(
             @RequestParam("brandId") Long brandId,
             @RequestParam("modelId") Long modelId,

@@ -16,11 +16,9 @@ public class PartsDTO {
 
     private Double price;
 
-    @Size(max = 255)
-    private String category;
+    private Long categoryId;
 
-    @Size(max = 255)
-    private String brand;
+    private Long brandId;
 
     @Size(max = 255)
     private String model;
@@ -60,20 +58,20 @@ public class PartsDTO {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public Long getCategory() {
+        return categoryId;
     }
 
-    public void setCategory(final String category) {
-        this.category = category;
+    public void setCategory(final Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setBrand(final String brand) {
-        this.brand = brand;
+    public void setBrandId(final Long brand) {
+        this.brandId = brandId;
     }
 
     public String getModel() {

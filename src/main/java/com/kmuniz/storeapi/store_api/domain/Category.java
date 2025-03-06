@@ -34,6 +34,12 @@ public class Category {
     @Column
     private Integer partCount;
 
+    @Column(name = "brand_id")
+    private Long brandId;
+
+    @Column(name = "model_id")
+    private Long modelId;
+
     public Integer getId() {
         return id;
     }
@@ -64,6 +70,22 @@ public class Category {
 
     public void setPartCount(final Integer partCount) {
         this.partCount = partCount;
+    }
+
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(final Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public Long getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(final Long modelId) {
+        this.modelId = modelId;
     }
 
 }

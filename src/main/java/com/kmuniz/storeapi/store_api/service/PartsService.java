@@ -49,10 +49,15 @@ public class PartsService {
     }
 
     public List<PartsDTO> searchParts(Long brandId, Long modelId, Long engineId, String partName) {
-        return partsRepository.findByCriteria(brandId, modelId, engineId, partName)
-                .stream()
-                .map(part -> mapToDTO(part, new PartsDTO()))
-                .toList();
+        return partsRepository.findByBrandIdAndModelIdAndEngineIdAndPartName(
+                brandId,
+                modelId,
+                engineId,
+                partName 
+            )
+            .stream()
+            .map(part -> mapToDTO(part, new PartsDTO()))
+            .toList();
     }
 
 
@@ -61,8 +66,8 @@ public class PartsService {
         partsDTO.setName(parts.getName());
         partsDTO.setDescription(parts.getDescription());
         partsDTO.setPrice(parts.getPrice());
-        partsDTO.setCategory(parts.getCategory());
-        partsDTO.setBrand(parts.getBrand());
+        partsDTO.setCategory(parts.getCategoryId());
+        partsDTO.setBrandId(parts.getBrandId());
         partsDTO.setModel(parts.getModel());
         partsDTO.setImageUrl(parts.getImageUrl());
         return partsDTO;
@@ -72,8 +77,8 @@ public class PartsService {
         parts.setName(partsDTO.getName());
         parts.setDescription(partsDTO.getDescription());
         parts.setPrice(partsDTO.getPrice());
-        parts.setCategory(partsDTO.getCategory());
-        parts.setBrand(partsDTO.getBrand());
+        parts.setCategoryId(partsDTO.getCategory());
+        parts.setBrandId(partsDTO.getBrandId());
         parts.setModel(partsDTO.getModel());
         parts.setImageUrl(partsDTO.getImageUrl());
         return parts;

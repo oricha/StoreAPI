@@ -35,16 +35,25 @@ public class Parts {
     private Double price;
 
     @Column
-    private String category;
-
-    @Column
-    private String brand;
-
-    @Column
     private String model;
+
+    @Column(name = "engine_id")
+    private Long engineId;
+
+    @Column(name = "partName")
+    private String partName;
 
     @Column
     private String imageUrl;
+
+    @Column(name = "category_id")
+    private Long categoryId;
+
+    @Column(name = "brand_id")
+    private Long brandId;
+
+    @Column(name = "model_id")
+    private Long modelId;
 
     public Long getId() {
         return id;
@@ -78,22 +87,6 @@ public class Parts {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(final String category) {
-        this.category = category;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(final String brand) {
-        this.brand = brand;
-    }
-
     public String getModel() {
         return model;
     }
@@ -108,6 +101,46 @@ public class Parts {
 
     public void setImageUrl(final String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public Long getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(Long modelId) {
+        this.modelId = modelId;
+    }
+
+    public Long getEngineId() {
+        return engineId;
+    }
+
+    public void setEngineId(Long engineId) {
+        this.engineId = engineId;
+    }
+
+    public String getPartName() {
+        return partName;
+    }
+
+    public void setPartName(String partName) {
+        this.partName = partName;
     }
 
 }

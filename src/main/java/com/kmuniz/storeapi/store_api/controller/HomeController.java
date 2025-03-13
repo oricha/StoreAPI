@@ -26,4 +26,9 @@ public class HomeController {
     public String index3() {
         return "home/index-3";
     }
+
+    @GetMapping("/index-list")
+    public String indexList() {
+        return "shop-list/shop-right-sidebar-list";
+    }
 }

@@ -88,6 +88,9 @@ public class CarModelService {
     }
 
     public List<CarModelDTO> findByCarMakerId(Long carMakerId) {
-        return null;
+        final List<CarModel> carModels = carModelRepository.findByCarMakerId(carMakerId);
+        return carModels.stream()
+                .map(carModel -> mapToDTO(carModel, new CarModelDTO()))
+                .toList();
     }
 }

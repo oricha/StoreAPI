@@ -5,6 +5,7 @@ import com.kmuniz.storeapi.store_api.service.CarMakerService;
 import com.kmuniz.storeapi.store_api.util.ReferencedWarning;
 import com.kmuniz.storeapi.store_api.util.WebUtils;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +35,12 @@ public class CarMakerController {
         return "carMaker/list";
     }
 
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<CarMakerDTO>> searchCarMakers() {
+        List<CarMakerDTO> carMakers = carMakerService.findAll();
+        return ResponseEntity.ok(carMakers);
+    }
     @GetMapping("/add")
     public String add(@ModelAttribute("carMaker") final CarMakerDTO carMakerDTO) {
         return "carMaker/add";
@@ -82,9 +89,5 @@ public class CarMakerController {
         return "redirect:/carMakers";
     }
 
-    @GetMapping("/search")
-    public List<CarMakerDTO> searchCarMakers() {
-        return carMakerService.findAll();
-    }
 
 }

@@ -27,6 +27,26 @@ public class HomeController {
         return "home/index-3";
     }
 
+    @GetMapping("/index-4")
+    public String index4() {
+        return "home/index-4";
+    }
+
+    @GetMapping("/index-5")
+    public String index5() {
+        return "home/index-5";
+    }
+
+    @GetMapping("/index-6")
+    public String index6() {
+        return "home/index-6";
+    }
+
+    @GetMapping("/index-7")
+    public String index7() {
+        return "home/index-7";
+    }
+
     @GetMapping("/index-list")
     public String indexList() {
         return "shop-list/shop-right-sidebar-list";

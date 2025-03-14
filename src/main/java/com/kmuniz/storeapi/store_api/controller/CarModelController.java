@@ -9,12 +9,14 @@ import com.kmuniz.storeapi.store_api.util.ReferencedWarning;
 import com.kmuniz.storeapi.store_api.util.WebUtils;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -97,6 +99,18 @@ public class CarModelController {
         List<CarModelDTO> carModels = carModelService.findByCarMakerId(carMakerId);
         model.addAttribute("carModels", carModels);
         return "carModel/list"; // Adjust the view name as needed
+    }
+
+    @GetMapping("/getAll")
+    @ResponseBody
+    public ResponseEntity<List<CarModelDTO>> getAllModels(@RequestParam(required = false) Long carMakerId) {
+        List<CarModelDTO> carModels;
+        if (carMakerId != null) {
+            carModels = carModelService.findByCarMakerId(carMakerId);
+        } else {
+            carModels = new ArrayList<>();
+        }
+        return ResponseEntity.ok(carModels);
     }
 
 }

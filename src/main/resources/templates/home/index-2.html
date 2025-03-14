@@ -39,6 +39,88 @@
     <!--modernizr min js here-->
     <script src="/js/vendor/modernizr-3.7.1.min.js"></script>
 
+    <style>
+        .search_forms {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .search_title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .license_plate_input {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .eu_flag {
+            background: #003399;
+            width: 40px;
+        }
+        
+        .form-control {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            height: 42px;
+        }
+        
+        .form-control:disabled {
+            background: #f5f5f5;
+        }
+        
+        .btn-primary {
+            background: #003399;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: #002266;
+        }
+
+        /* Existing styles */
+        
+        /* Yellow header styles from index-4 */
+        .header_area.header_padding {
+            background-color: #FFD700;
+        }
+        
+        .header_top.top_two {
+            background-color: #FFD700;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .header_middle.middle_two {
+            background-color: #FFD700;
+        }
+
+        /* Add discount banner */
+        .discount_area {
+            background: #242424;
+            padding: 10px 0;
+        }
+
+        .discount_text {
+            text-align: center;
+        }
+
+        .discount_text p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .discount_text p a {
+            color: #FFD700;
+            text-decoration: underline;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -470,7 +552,17 @@
             </div>
         </div>
         <!--header bottom end-->
-
+        <div class="discount_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="discount_text">
+                            <p>Ahorra un 30% en tu primera compra en ReciCar <a href="#">Shop Now!</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <!--header area end-->
 
@@ -628,48 +720,99 @@
 
     <!--slider area start-->
     <section class="slider_section slider_two mb-50">
-        <div class="slider_area owl-carousel">
-            <div class="single_slider d-flex align-items-center" data-bgimg="/img/slider/slider4.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider_content">
-                                <h2>HP Racer Skutex</h2>
-                                <h1>Feel The Greatest Oil Power With Best One Oil</h1>
-                                <a class="button" href="shop.html">shopping now</a>
+        <div class="container">
+            <div class="row">
+                <!-- New left column for search forms -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="search_forms bg-white p-4 rounded shadow-sm">
+                        <!-- Car Search Form -->
+                        <div class="car_search_form mb-4">
+                            <h3 class="search_title mb-4">Seleccione su modelo de coche para buscar</h3>
+                            <form id="car-search-form">
+                                <div class="form-group mb-3">
+                                    <select class="form-control" id="car-make">
+                                        <option value="">Elija una marca</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <select class="form-control" id="car-model" disabled>
+                                        <option value="">Elija un modelo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <select class="form-control" id="car-engine" disabled>
+                                        <option value="">Elija un tipo de motor</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                            </form>
+                        </div>
+
+                        <!-- License Plate Search Form -->
+                        <div class="plate_search_form">
+                            <h3 class="search_title mb-4">Buscar modelo de coche por matrícula</h3>
+                            <form id="plate-search-form">
+                                <div class="license_plate_input d-flex mb-3">
+                                    <div class="eu_flag text-center p-2 bg-blue">
+                                        <span class="text-white">E</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="1234-ABC" id="license-plate">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                            </form>
+                            <div class="mt-3">
+                                <a href="#" class="text-muted">
+                                    <small>¿SU COCHE NO SE ENCUENTRA PRESENTE EN EL CATÁLOGO?</small>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
-            <div class="single_slider d-flex align-items-center" data-bgimg="/img/slider/slider5.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider_content">
-                                <h2>Special Offer</h2>
-                                <h1>Get &250 In Total Discount On A New Set Of Tries</h1>
-                                <a class="button" href="shop.html">shopping now</a>
+                <!-- Modified slider column -->
+                <div class="col-lg-8 col-md-12">
+                    <div class="slider_area owl-carousel">
+                        <div class="single_slider d-flex align-items-center" data-bgimg="/img/slider/slider4.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider_content">
+                                            <h2>HP Racer Skutex</h2>
+                                            <h1>Feel The Greatest Oil Power With Best One Oil</h1>
+                                            <a class="button" href="shop.html">shopping now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_slider d-flex align-items-center" data-bgimg="/img/slider/slider5.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider_content">
+                                            <h2>Special Offer</h2>
+                                            <h1>Get &250 In Total Discount On A New Set Of Tries</h1>
+                                            <a class="button" href="shop.html">shopping now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_slider d-flex align-items-center" data-bgimg="/img/slider/slider6.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider_content">
+                                            <h2>Over 15,000</h2>
+                                            <h1>Remanufactured Low Milage Used Engines For Sale</h1>
+                                            <a class="button" href="shop.html">shopping now</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="single_slider d-flex align-items-center" data-bgimg="/img/slider/slider6.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider_content">
-                                <h2>Over 15,000</h2>
-                                <h1>Remanufactured Low Milage Used Engines For Sale</h1>
-                                <a class="button" href="shop.html">shopping now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -686,8 +829,8 @@
                                 <img src="/img/about/shipping1.png" alt="">
                             </div>
                             <div class="shipping_content">
-                                <h2>Free Shipping</h2>
-                                <p>Free shipping on all US order</p>
+                                <h2>Envio Gratis</h2>
+                                <p>Para envios  superior a 30 €</p>
                             </div>
                         </div>
                         <div class="single_shipping">
@@ -695,8 +838,8 @@
                                 <img src="/img/about/shipping2.png" alt="">
                             </div>
                             <div class="shipping_content">
-                                <h2>Support 24/7</h2>
-                                <p>Contact us 24 hours a day</p>
+                                <h2>Soporte 24/7</h2>
+                                <p>Con nuestro servicio de soporte</p>
                             </div>
                         </div>
                         <div class="single_shipping">
@@ -4729,7 +4872,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="widgets_container">
                             <h3>Newsletter Subscribe</h3>
-                            <p>We’ll never share your email address with a third-party.</p>
+                            <p>We'll never share your email address with a third-party.</p>
                             <div class="subscribe_form">
                                 <form id="mc-form" class="mc-form footer-newsletter">
                                     <input id="mc-email" type="email" autocomplete="off" placeholder="Enter you email address here..." />
@@ -4912,7 +5055,111 @@
 <!-- Main JS -->
 <script src="/js/main.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carMakeSelect = document.getElementById('car-make');
+    const carModelSelect = document.getElementById('car-model');
+    const carEngineSelect = document.getElementById('car-engine');
+    
+    // Cargar marcas al iniciar la página
+    loadCarMakes();
 
+    function loadCarMakes() {
+        fetch('/carMakers/getAll')
+            .then(response => response.json())
+            .then(data => {
+                carMakeSelect.innerHTML = '<option value="">Elija una marca</option>';
+                data.forEach(make => {
+                    const option = document.createElement('option');
+                    option.value = make.id;
+                    option.textContent = make.name;
+                    carMakeSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error cargando marcas:', error);
+            });
+    }
+    
+    // Manejar la selección de marca
+    carMakeSelect.addEventListener('change', function() {
+        const selectedMakeId = this.value;
+        
+        if (selectedMakeId) {
+            carModelSelect.disabled = false;
+            // Llamar al endpoint correcto con el carMakerId
+            fetch(`/carModels/getAll?carMakerId=${selectedMakeId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    carModelSelect.innerHTML = '<option value="">Elija un modelo</option>';
+                    data.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.id;
+                        option.textContent = model.name;
+                        carModelSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error cargando modelos:', error);
+                    carModelSelect.innerHTML = '<option value="">Error al cargar modelos</option>';
+                });
+        } else {
+            // Si no hay marca seleccionada, deshabilitar y limpiar los otros dropdowns
+            carModelSelect.disabled = true;
+            carEngineSelect.disabled = true;
+            carModelSelect.innerHTML = '<option value="">Elija un modelo</option>';
+            carEngineSelect.innerHTML = '<option value="">Elija un tipo de motor</option>';
+        }
+    });
+    
+    // Manejar la selección de modelo
+    carModelSelect.addEventListener('change', function() {
+        if (this.value) {
+            carEngineSelect.disabled = false;
+            fetch(`/carVersions/search?carModelId=${this.value}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    carEngineSelect.innerHTML = '<option value="">Elija un tipo de motor</option>';
+                    data.forEach(engine => {
+                        const option = document.createElement('option');
+                        option.value = engine.id;
+                        option.textContent = engine.name;
+                        carEngineSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error cargando motores:', error);
+                    carEngineSelect.innerHTML = '<option value="">Error al cargar motores</option>';
+                });
+        } else {
+            carEngineSelect.disabled = true;
+            carEngineSelect.innerHTML = '<option value="">Elija un tipo de motor</option>';
+        }
+    });
+
+    // Manejar el envío del formulario
+    document.getElementById('car-search-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const makeId = carMakeSelect.value;
+        const modelId = carModelSelect.value;
+        const engineId = carEngineSelect.value;
+        
+        if (makeId && modelId && engineId) {
+            console.log('Búsqueda con:', {makeId, modelId, engineId});
+        }
+    });
+});
+</script>
 
 </body>
 

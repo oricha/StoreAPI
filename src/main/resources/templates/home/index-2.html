@@ -5121,7 +5121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     carModelSelect.addEventListener('change', function() {
         if (this.value) {
             carEngineSelect.disabled = false;
-            fetch(`/carVersions/search?carModelId=${this.value}`)
+            fetch(`/carVersions/getAll?carModelId=${this.value}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

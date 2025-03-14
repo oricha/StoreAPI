@@ -10,6 +10,7 @@ import com.kmuniz.storeapi.store_api.util.CustomCollectors;
 import com.kmuniz.storeapi.store_api.util.WebUtils;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @Controller
@@ -102,6 +104,13 @@ public class CarVersionController {
         List<CarVersionDTO> carVersions = carVersionService.findByCarModelId(carModelId);
         model.addAttribute("carVersions", carVersions);
         return "carVersion/list"; // Adjust the view name as needed
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<CarVersionDTO>>  searchByCarModelJson(@RequestParam("carModelId") Long carModelId, Model model) {
+        List<CarVersionDTO> carVersions = carVersionService.findByCarModelId(carModelId);
+        model.addAttribute("carVersions", carVersions);
+        return ResponseEntity.ok(carVersions);
     }
 
 }

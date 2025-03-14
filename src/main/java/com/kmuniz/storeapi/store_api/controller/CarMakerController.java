@@ -37,7 +37,7 @@ public class CarMakerController {
 
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<CarMakerDTO>> searchCarMakers() {
+    public ResponseEntity<List<CarMakerDTO>> searchCarMakersJson() {
         List<CarMakerDTO> carMakers = carMakerService.findAll();
         return ResponseEntity.ok(carMakers);
     }

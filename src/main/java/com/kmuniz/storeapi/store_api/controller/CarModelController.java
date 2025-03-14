@@ -103,7 +103,7 @@ public class CarModelController {
 
     @GetMapping("/getAll")
     @ResponseBody
-    public ResponseEntity<List<CarModelDTO>> getAllModels(@RequestParam(required = false) Long carMakerId) {
+    public ResponseEntity<List<CarModelDTO>> getAllModelsJson(@RequestParam(required = false) Long carMakerId) {
         List<CarModelDTO> carModels;
         if (carMakerId != null) {
             carModels = carModelService.findByCarMakerId(carMakerId);

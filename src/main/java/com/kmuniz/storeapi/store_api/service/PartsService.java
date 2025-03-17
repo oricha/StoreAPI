@@ -60,10 +60,24 @@ public class PartsService {
             .toList();
     }
 
+    public List<PartsDTO> searchByNameOrCode(String query) {
+        return partsRepository.findByNameContainingIgnoreCaseOrCodeContainingIgnoreCase(query, query)
+                .stream()
+                .map(parts -> {
+                    PartsDTO dto = new PartsDTO();
+                    dto.setId(parts.getId());
+                    dto.setName(parts.getName());
+                    dto.setPrice(parts.getPrice());
+                    dto.setDescription(parts.getDescription());
+                    return dto;
+                })
+                .toList();
+    }
 
     private PartsDTO mapToDTO(final Parts parts, final PartsDTO partsDTO) {
         partsDTO.setId(parts.getId());
         partsDTO.setName(parts.getName());
+        partsDTO.setCode(parts.getCode());
         partsDTO.setDescription(parts.getDescription());
         partsDTO.setPrice(parts.getPrice());
         partsDTO.setCategory(parts.getCategoryId());
@@ -75,6 +89,7 @@ public class PartsService {
 
     private Parts mapToEntity(final PartsDTO partsDTO, final Parts parts) {
         parts.setName(partsDTO.getName());
+        parts.setCode(partsDTO.getCode());
         parts.setDescription(partsDTO.getDescription());
         parts.setPrice(partsDTO.getPrice());
         parts.setCategoryId(partsDTO.getCategory());

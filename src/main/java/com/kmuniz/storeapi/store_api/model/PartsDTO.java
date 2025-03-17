@@ -12,6 +12,8 @@ public class PartsDTO {
     @Size(max = 255)
     private String name;
 
+    private String code;
+
     private String description;
 
     private Double price;
@@ -40,6 +42,14 @@ public class PartsDTO {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {

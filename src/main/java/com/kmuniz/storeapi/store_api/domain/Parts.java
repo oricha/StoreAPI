@@ -29,6 +29,9 @@ public class Parts {
     private String name;
 
     @Column
+    private String code;
+
+    @Column
     private String description;
 
     @Column
@@ -69,6 +72,14 @@ public class Parts {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {

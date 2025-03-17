@@ -93,4 +93,16 @@ public class CarModelService {
                 .map(carModel -> mapToDTO(carModel, new CarModelDTO()))
                 .toList();
     }
+
+    public CarModelDTO findByNameContaining(String name) {
+        return carModelRepository.findByNameContainingIgnoreCase(name)
+                .map(model -> {
+                    CarModelDTO dto = new CarModelDTO();
+                    dto.setId(model.getId());
+                    dto.setName(model.getName());
+                    dto.setCarMaker(model.getCarMaker().getId());
+                    return dto;
+                })
+                .orElse(null);
+    }
 }

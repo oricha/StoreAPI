@@ -89,4 +89,15 @@ public class CarMakerService {
         return null;
     }
 
+    public CarMakerDTO findByNameContaining(String name) {
+        return carMakerRepository.findByNameContainingIgnoreCase(name)
+                .map(maker -> {
+                    CarMakerDTO dto = new CarMakerDTO();
+                    dto.setId(maker.getId());
+                    dto.setName(maker.getName());
+                    return dto;
+                })
+                .orElse(null);
+    }
+
 }

@@ -80,12 +80,12 @@ public class PartsController {
             @RequestParam("brandId") Long brandId,
             @RequestParam("modelId") Long modelId,
             @RequestParam("engineId") Long engineId,
-            @RequestParam("partName") String partName,
+            @RequestParam(value = "partName", required = false) String partName,
             Model model) {
         
         List<PartsDTO> parts = partsService.searchParts(brandId, modelId, engineId, partName);
         model.addAttribute("parts", parts);
-        return "parts/list"; // Adjust the view name as needed
+        return "shop-list/shop-right-sidebar-list"; // Adjust the view name as needed
     }
 
 }

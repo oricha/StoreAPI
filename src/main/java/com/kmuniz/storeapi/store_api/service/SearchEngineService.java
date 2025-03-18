@@ -2,11 +2,7 @@ package com.kmuniz.storeapi.store_api.service;
 
 import org.springframework.stereotype.Service;
 import com.kmuniz.storeapi.store_api.model.PartsDTO;
-import com.kmuniz.storeapi.store_api.service.CarMakerService;
-import com.kmuniz.storeapi.store_api.service.CarModelService;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @Service
 public class SearchEngineService {

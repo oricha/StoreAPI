@@ -35,59 +35,10 @@ public class CarMakerController {
         return "carMaker/list";
     }
 
-
     @GetMapping("/getAll")
     public ResponseEntity<List<CarMakerDTO>> searchCarMakersJson() {
         List<CarMakerDTO> carMakers = carMakerService.findAll();
         return ResponseEntity.ok(carMakers);
     }
-    @GetMapping("/add")
-    public String add(@ModelAttribute("carMaker") final CarMakerDTO carMakerDTO) {
-        return "carMaker/add";
-    }
-
-    @PostMapping("/add")
-    public String add(@ModelAttribute("carMaker") @Valid final CarMakerDTO carMakerDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "carMaker/add";
-        }
-        carMakerService.create(carMakerDTO);
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("carMaker.create.success"));
-        return "redirect:/carMakers";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") final Long id, final Model model) {
-        model.addAttribute("carMaker", carMakerService.get(id));
-        return "carMaker/edit";
-    }
-
-    @PostMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") final Long id,
-            @ModelAttribute("carMaker") @Valid final CarMakerDTO carMakerDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "carMaker/edit";
-        }
-        carMakerService.update(id, carMakerDTO);
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("carMaker.update.success"));
-        return "redirect:/carMakers";
-    }
-
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") final Long id,
-            final RedirectAttributes redirectAttributes) {
-        final ReferencedWarning referencedWarning = carMakerService.getReferencedWarning(id);
-        if (referencedWarning != null) {
-            redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR,
-                    WebUtils.getMessage(referencedWarning.getKey(), referencedWarning.getParams().toArray()));
-        } else {
-            carMakerService.delete(id);
-            redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("carMaker.delete.success"));
-        }
-        return "redirect:/carMakers";
-    }
-
 
 }

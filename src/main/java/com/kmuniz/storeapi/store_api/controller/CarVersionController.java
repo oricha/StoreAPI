@@ -50,65 +50,9 @@ public class CarVersionController {
                 .collect(CustomCollectors.toSortedMap(CarModel::getId, CarModel::getName)));
     }
 
-    @GetMapping
-    public String list(final Model model) {
-        model.addAttribute("carVersions", carVersionService.findAll());
-        return "carVersion/list";
-    }
-
-    @GetMapping("/add")
-    public String add(@ModelAttribute("carVersion") final CarVersionDTO carVersionDTO) {
-        return "carVersion/add";
-    }
-
-    @PostMapping("/add")
-    public String add(@ModelAttribute("carVersion") @Valid final CarVersionDTO carVersionDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "carVersion/add";
-        }
-        carVersionService.create(carVersionDTO);
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("carVersion.create.success"));
-        return "redirect:/carVersions";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") final Long id, final Model model) {
-        model.addAttribute("carVersion", carVersionService.get(id));
-        return "carVersion/edit";
-    }
-
-    @PostMapping("/edit/{id}")
-    public String edit(@PathVariable(name = "id") final Long id,
-            @ModelAttribute("carVersion") @Valid final CarVersionDTO carVersionDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "carVersion/edit";
-        }
-        carVersionService.update(id, carVersionDTO);
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("carVersion.update.success"));
-        return "redirect:/carVersions";
-    }
-
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") final Long id,
-            final RedirectAttributes redirectAttributes) {
-        carVersionService.delete(id);
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("carVersion.delete.success"));
-        return "redirect:/carVersions";
-    }
-
-    @GetMapping("/search")
-    public String searchByCarModel(@RequestParam("carModelId") Long carModelId, Model model) {
-        List<CarVersionDTO> carVersions = carVersionService.findByCarModelId(carModelId);
-        model.addAttribute("carVersions", carVersions);
-        return "carVersion/list"; // Adjust the view name as needed
-    }
-
     @GetMapping("/getAll")
-    public ResponseEntity<List<CarVersionDTO>>  searchByCarModelJson(@RequestParam("carModelId") Long carModelId, Model model) {
-        List<CarVersionDTO> carVersions = carVersionService.findByCarModelId(carModelId);
-        model.addAttribute("carVersions", carVersions);
+    public ResponseEntity<List<CarVersionDTO>> searchCarVersionsJson() {
+        List<CarVersionDTO> carVersions = carVersionService.findAll();
         return ResponseEntity.ok(carVersions);
     }
 

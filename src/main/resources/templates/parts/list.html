@@ -9,7 +9,7 @@
             <div class="flex flex-wrap mb-6">
                 <h1 class="grow text-3xl md:text-4xl font-medium mb-2">[[#{parts.list.headline}]]</h1>
                 <div>
-                    <a th:href="@{/partss/add}" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2">[[#{parts.list.createNew}]]</a>
+                    <a th:href="@{/admin/partss/add}" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2">[[#{parts.list.createNew}]]</a>
                 </div>
             </div>
             <div th:if="${partses.empty}">[[#{parts.list.empty}]]</div>
@@ -38,8 +38,8 @@
                             <td class="p-2">[[${parts.imageUrl}]]</td>
                             <td class="p-2">
                                 <div class="float-right whitespace-nowrap">
-                                    <a th:href="@{/partss/edit/{id}(id=${parts.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{parts.list.edit}]]</a>
-                                    <form th:action="@{/partss/delete/{id}(id=${parts.id})}"
+                                    <a th:href="@{/admin/partss/edit/{id}(id=${parts.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{parts.list.edit}]]</a>
+                                    <form th:action="@{/admin/partss/delete/{id}(id=${parts.id})}"
                                             th:hx-confirm="#{delete.confirm}" method="post" class="inline">
                                         <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{parts.list.delete}]]</button>
                                     </form>
